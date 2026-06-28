@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tu Nombre — Desarrollador Frontend</title>
+<meta name="description" content="Portafolio profesional de desarrollo de software — proyectos, experiencia y stack." />
+
+<!--Tailwind(CDN)-->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  // Paleta y tipografías del sitio. No es necesario tocar esto.
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink:        '#0a0a0a', // negro profundo (fondo principal)
+          panel:      '#121212', // negro panel (tarjetas, header)
+          line:       '#262626', // gris para bordes/divisores
+          paper:      '#f3f1ec', // blanco limpio (texto principal)
+          mist:       '#8c8c92', // gris sofisticado (texto secundario)
+          gold:       '#cda039', // dorado principal (acentos / hover)
+          'gold-soft':'#e9c977', // dorado claro (brillos / highlights)
+          'gold-deep':'#9c7a26', // dorado oscuro (estados activos)
+        },
+        fontFamily: {
+          display: ['"Fraunces"', 'serif'],
+          sans:    ['"Inter"', 'sans-serif'],
+          mono:    ['"JetBrains Mono"', 'monospace'],
+        },
+      },
+    },
+  };
+</script>
+
+<!--Tipografias (Google Fonts)-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Iconos (Sacados de Lucide) -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+</head>
+
+<body class="bg-ink text-paper font-sans antialiased overflow-x-hidden">
+
+<!-- Bloqeu de Fondo Animado (formas geométricas sutiles) -->
+<canvas id="bg-canvas" class="fixed inset-0 -z-10 h-full w-full"></canvas>
+
+<!-- Cursor Personalizado -->
+<div id="cursor-dot" aria-hidden="true"></div>
+<div id="cursor-ring" aria-hidden="true"></div>
+
+<!-- Header -->
+<header id="site-header" class="fixed top-0 inset-x-0 z-50 transition-all duration-500 bg-ink/60 backdrop-blur-md border-b border-line/60">
+  <div class="mx-auto max-w-7xl px-6 lg:px-10 h-20 flex items-center justify-between">
+
+    <a href="#inicio" data-cursor class="font-display text-2xl tracking-tight text-paper">
+      <span class="text-gold">[ </span>Edgar Flores<span class="text-gold">]</span>
+    </a>
+
+    <!-- Navegación de escritorio -->
+    <nav class="hidden lg:flex items-center gap-10 font-mono text-[13px] uppercase tracking-wider text-mist">
+      <a href="#inicio"      data-nav data-cursor class="nav-link hover:text-paper">Sobre mí</a>
+      <a href="#experiencia" data-nav data-cursor class="nav-link hover:text-paper">Experiencia</a>
+      <a href="#herramientas" data-nav data-cursor class="nav-link hover:text-paper">Herramientas</a>
+      <a href="#redes"       data-nav data-cursor class="nav-link hover:text-paper">Redes sociales</a>
+    </nav>
+
+    <!-- Botones de la derecha (escritorio) -->
+    <div class="hidden lg:flex items-center gap-3">
+      <a href="#proyectos" data-cursor class="btn-ghost px-5 py-2.5 rounded-full border border-line text-sm text-paper hover:border-gold hover:text-gold">
+        Proyectos
+      </a>
+      <a href="#contacto" data-cursor class="btn-gold px-5 py-2.5 rounded-full bg-gold text-ink text-sm font-medium hover:bg-gold-soft">
+        Contacto
+      </a>
+    </div>
+
+    <!-- Botón hamburguesa (para móvil) -->
+    <button id="menu-toggle" data-cursor aria-label="Abrir menú" aria-expanded="false" class="lg:hidden relative w-9 h-9 flex flex-col items-center justify-center gap-[6px]">
+      <span class="bar bar-top w-7 h-[1.5px] bg-paper rounded-full"></span>
+      <span class="bar bar-mid w-7 h-[1.5px] bg-paper rounded-full"></span>
+      <span class="bar bar-bottom w-7 h-[1.5px] bg-paper rounded-full"></span>
+    </button>
+  </div>
+</header>
+
+<!-- Menú móvil de pantalla completa -->
+<div id="mobile-menu">
+  <nav class="flex-1 flex flex-col items-center justify-center gap-8 font-display text-4xl">
+    <a href="#inicio"       data-nav-mobile data-cursor class="text-paper hover:text-gold transition-colors">Sobre mí</a>
+    <a href="#experiencia"  data-nav-mobile data-cursor class="text-paper hover:text-gold transition-colors">Experiencia</a>
+    <a href="#herramientas" data-nav-mobile data-cursor class="text-paper hover:text-gold transition-colors">Herramientas</a>
+    <a href="#redes"        data-nav-mobile data-cursor class="text-paper hover:text-gold transition-colors">Redes sociales</a>
+    <a href="#proyectos"    data-nav-mobile data-cursor class="text-paper hover:text-gold transition-colors">Proyectos</a>
+    <a href="#contacto"     data-nav-mobile data-cursor class="text-gold">Contacto</a>
+  </nav>
+  <p class="pb-10 text-center font-mono text-xs text-mist uppercase tracking-widest">Disponible para nuevos proyectos</p>
+</div>
+
+<!-- Main -->
+<main class="relative z-10">
+
+  <!-- Sección de Sobre Mi (HERO)-->
+  <section id="inicio" class="relative min-h-screen flex items-center pt-32 pb-20 px-6 lg:px-10">
+    <div class="mx-auto max-w-7xl w-full grid lg:grid-cols-[1.1fr_0.9fr] gap-16 items-center">
+
+      <!-- Columna de texto -->
+      <div class="order-2 lg:order-1">
+        <p data-reveal class="reveal font-mono text-gold text-sm tracking-widest mb-6">// sobre-mi</p>
+
+        <h1 data-reveal class="reveal font-display font-medium leading-[1.05] text-paper text-5xl sm:text-6xl lg:text-7xl">
+          Edgar<br>Flores
+        </h1>
+
+        <p data-reveal class="reveal mt-6 font-mono text-lg sm:text-xl text-gold">
+          Desarrollador Frontend &amp; Diseñador de Web
+        </p>
+
+        <p data-reveal class="reveal mt-6 max-w-xl text-mist text-base sm:text-lg leading-relaxed">
+          Soy un Estudiante de Ingenieria en Sistemas, con conocimientos en HTML5, JavaScript, Tailwind y CSS
+          Me gusta desarrollar paginas web y aplicar inteligencia artificial en mis proyectos, 
+          mayormente me enfoco en lo que es el desarrollo y diseño web (frontend).
+
+          Aprendo de manera experencial, me fascina crear proyectos en conjunto o para personas
+          que les interesa el ambito de la programación.
+          actualmente sigo estudiando para en un futuro ser un desarrollador FullStack.
+        </p>
+
+        <!-- Fila de contacto con iconos -->
+        <div data-reveal class="reveal mt-10 flex flex-wrap items-center gap-3">
+          <a href="mailto:joseej1303@email.com" data-cursor aria-label="Correo electrónico"
+             class="icon-chip w-12 h-12 rounded-full border border-line flex items-center justify-center text-paper">
+            <i data-lucide="mail" class="w-[18px] h-[18px]"></i>
+          </a>
+          <a href="https://www.instagram.com/unratedz89/" data-cursor aria-label="Instagram"
+             class="icon-chip w-12 h-12 rounded-full border border-line flex items-center justify-center text-paper">
+            <i data-lucide="camera" class="w-[18px] h-[18px]"></i>
+          </a>
+          <a href="https://github.com/EightyNin3z" target="_blank" rel="noopener" data-cursor aria-label="GitHub"
+             class="icon-chip w-12 h-12 rounded-full border border-line flex items-center justify-center text-paper">
+            <i data-lucide="computer" class="w-[18px] h-[18px]"></i>
+          </a>
+          <a href="https://linkedin.com/in/tu-usuario" target="_blank" rel="noopener" data-cursor aria-label="LinkedIn"
+             class="icon-chip w-12 h-12 rounded-full border border-line flex items-center justify-center text-paper">
+            <i data-lucide="scan-text" class="w-[18px] h-[18px]"></i>
+          </a>
+          <a href="https://www.google.com/maps/place/Usulut%C3%A1n/@13.3432734,-88.4530736,15z/data=!3m1!4b1!4m6!3m5!1s0x8f7b39d091f470ef:0xd85004d8eec91f20!8m2!3d13.3445013!4d-88.4390497!16zL20vMDZyZ2pk?entry=ttu&g_ep=EgoyMDI2MDYyNC4wIKXMDSoASAFQAw%3D%3D" data-cursor aria-label="Ubicación"
+             class="icon-chip pl-4 pr-5 h-12 rounded-full border border-line flex items-center gap-2 text-mist text-sm">
+            <i data-lucide="map-pin" class="w-[16px] h-[16px]"></i>
+            <span>Usulután, El Salvador</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Columna de foto -->
+      <div data-reveal class="reveal order-1 lg:order-2 relative mx-auto w-full max-w-sm">
+        <div class="relative aspect-[4/5] rounded-2xl overflow-hidden border border-line bg-panel">
+          <div class="absolute inset-0 flex items-center justify-center text-mist">
+            <img src="assets/ImagenPerfil.jpeg" class="w-full h-full object-cover"></i>
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent"></div>
+        </div>
+        <!-- Esquinas tipo "viewfinder" -->
+        <span class="frame-corner -top-3 -left-3 border-t-2 border-l-2"></span>
+        <span class="frame-corner -top-3 -right-3 border-t-2 border-r-2"></span>
+        <span class="frame-corner -bottom-3 -left-3 border-b-2 border-l-2"></span>
+        <span class="frame-corner -bottom-3 -right-3 border-b-2 border-r-2"></span>
+
+        <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[85%] bg-panel border border-line rounded-xl px-5 py-3 flex items-center justify-between font-mono text-xs text-mist">
+          <span>status:</span>
+          <span class="text-gold flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></span> disponible
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de mis Experencias -->
+  <section id="experiencia" class="relative py-28 px-6 lg:px-10 border-t border-line/60">
+    <div class="mx-auto max-w-5xl">
+      <p data-reveal class="reveal font-mono text-gold text-sm tracking-widest mb-4">// experiencia</p>
+      <h2 data-reveal class="reveal font-display text-4xl sm:text-5xl text-paper mb-16">Trayectoria profesional</h2>
+
+      <div class="relative border-l border-line ml-3">
+
+        <!-- Bloques de experiencia laboral -->
+        <div data-reveal class="reveal relative pl-10 pb-14">
+          <span class="absolute -left-[7px] top-1.5 w-3.5 h-3.5 rounded-full bg-gold"></span>
+          <p class="font-mono text-xs text-mist uppercase tracking-widest mb-2">Presente</p>
+          <h3 class="font-display text-2xl text-paper">Desarrollador Frontend Junior</h3>
+          <p class="text-gold text-sm mb-3"></p>
+          <p class="text-mist leading-relaxed max-w-2xl">
+            Primeros pasos profesionales construyendo landing pages y dashboards
+            internos.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Herramientas / Stack -->
+  <section id="herramientas" class="relative py-28 px-6 lg:px-10 border-t border-line/60 bg-panel/30">
+    <div class="mx-auto max-w-6xl">
+      <p data-reveal class="reveal font-mono text-gold text-sm tracking-widest mb-4">// stack</p>
+      <h2 data-reveal class="reveal font-display text-4xl sm:text-5xl text-paper mb-16">Herramientas y tecnologías</h2>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+
+        <div data-reveal class="reveal">
+          <h3 class="font-mono text-sm uppercase tracking-widest text-mist mb-5">Frontend</h3>
+          <div class="flex flex-wrap gap-2.5">
+            <span class="tool-chip px-4 py-2 rounded-full border border-line text-sm text-paper font-mono">HTML</span>
+            <span class="tool-chip px-4 py-2 rounded-full border border-line text-sm text-paper font-mono">JavaScript</span>
+            <span class="tool-chip px-4 py-2 rounded-full border border-line text-sm text-paper font-mono">Tailwind CSS</span>
+          </div>
+        </div>
+
+        <div data-reveal class="reveal">
+          <h3 class="font-mono text-sm uppercase tracking-widest text-mist mb-5">Backend &amp; Datos</h3>
+          <div class="flex flex-wrap gap-2.5">
+            <span class="tool-chip px-4 py-2 rounded-full border border-line text-sm text-paper font-mono">Node.js</span>
+            <span class="tool-chip px-4 py-2 rounded-full border border-line text-sm text-paper font-mono">Supabase</span>
+          </div>
+        </div>
+
+        <div data-reveal class="reveal">
+          <h3 class="font-mono text-sm uppercase tracking-widest text-mist mb-5">Herramientas</h3>
+          <div class="flex flex-wrap gap-2.5">
+            <span class="tool-chip px-4 py-2 rounded-full border border-line text-sm text-paper font-mono">Git</span>
+            <span class="tool-chip px-4 py-2 rounded-full border border-line text-sm text-paper font-mono">GitHub</span>
+            <span class="tool-chip px-4 py-2 rounded-full border border-line text-sm text-paper font-mono">Vercel</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Redes Sociales -->
+  <section id="redes" class="relative py-28 px-6 lg:px-10 border-t border-line/60">
+    <div class="mx-auto max-w-6xl">
+      <p data-reveal class="reveal font-mono text-gold text-sm tracking-widest mb-4">// conecta</p>
+      <h2 data-reveal class="reveal font-display text-4xl sm:text-5xl text-paper mb-16">Redes sociales</h2>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <a href="https://github.com/EightyNin3z" target="_blank" rel="noopener" data-cursor data-reveal
+           class="reveal icon-chip group p-6 rounded-2xl border border-line bg-panel flex flex-col gap-4">
+          <i data-lucide="github" class="w-6 h-6 text-paper group-hover:text-gold"></i>
+          <div>
+            <p class="text-paper font-medium">GitHub</p>
+            <p class="text-mist text-sm font-mono">@EightyNin3z</p>
+          </div>
+        </a>
+
+        <a href="https://linkedin.com/in/tu-usuario" target="_blank" rel="noopener" data-cursor data-reveal
+           class="reveal icon-chip group p-6 rounded-2xl border border-line bg-panel flex flex-col gap-4">
+          <i data-lucide="linkedin" class="w-6 h-6 text-paper group-hover:text-gold"></i>
+          <div>
+            <p class="text-paper font-medium">LinkedIn</p>
+            <p class="text-mist text-sm font-mono">Próximamente</p>
+          </div>
+        </a>
+
+        <a href="https://twitter.com/eightynineplus" target="_blank" rel="noopener" data-cursor data-reveal
+           class="reveal icon-chip group p-6 rounded-2xl border border-line bg-panel flex flex-col gap-4">
+          <i data-lucide="twitter" class="w-6 h-6 text-paper group-hover:text-gold"></i>
+          <div>
+            <p class="text-paper font-medium">X / Twitter</p>
+            <p class="text-mist text-sm font-mono">@EightyNineplus</p>
+          </div>
+        </a>
+
+        <a href="https://instagram.com/unratedz89" target="_blank" rel="noopener" data-cursor data-reveal
+           class="reveal icon-chip group p-6 rounded-2xl border border-line bg-panel flex flex-col gap-4">
+          <i data-lucide="instagram" class="w-6 h-6 text-paper group-hover:text-gold"></i>
+          <div>
+            <p class="text-paper font-medium">Instagram</p>
+            <p class="text-mist text-sm font-mono">@unratedz89</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proyectos -->
+  <section id="proyectos" class="relative py-28 px-6 lg:px-10 border-t border-line/60 bg-panel/30">
+    <div class="mx-auto max-w-7xl">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-16">
+        <div>
+          <p data-reveal class="reveal font-mono text-gold text-sm tracking-widest mb-4">// proyectos</p>
+          <h2 data-reveal class="reveal font-display text-4xl sm:text-5xl text-paper">Trabajo seleccionado</h2>
+        </div>
+        <p data-reveal class="reveal text-mist max-w-sm">
+          Una muestra de productos que diseñé y construí.
+        </p>
+      </div>
+
+      <!-- Tarjetas de proyectos reales -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
+
+        <!-- Tarjetas de proyecto (Para Repetir) -->
+        <article data-reveal class="reveal project-card rounded-2xl border border-line bg-panel overflow-hidden flex flex-col">
+          <div class="project-thumb aspect-[16/10] bg-ink flex items-center justify-center text-mist border-b border-line">
+            <img src="assets/Proyecto1.png" class="w-full h-full object-cover"> 
+            <!--<i data-lucide="image" class="w-9 h-9 opacity-30"></i>-->
+          </div>
+          <div class="p-6 flex flex-col flex-1">
+            <h3 class="font-display text-xl text-paper mb-2">Desarrollo Web: "Sobre Mi" Interativo.</h3>
+            <p class="text-mist text-sm leading-relaxed mb-5 flex-1">
+              Breve descripción del proyecto: Este es un portafolio web personal e interactivo inspirado en la interfaz de Solo Leveling, 
+              Se diseño para desplegar estadísticas de clase, habilidades de desarrollo y un almacén de recuerdos con el fin de tener una 
+              apartado de presentación único.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="px-3 py-1 rounded-full border border-line text-[11px] font-mono text-mist">HTML</span>
+              <span class="px-3 py-1 rounded-full border border-line text-[11px] font-mono text-mist">Tailwind/CSS</span>
+              <span class="px-3 py-1 rounded-full border border-line text-[11px] font-mono text-mist">Lucide</span>
+            </div>
+            <a href="https://anthx67.github.io/" target="_blank" rel="noopener" data-cursor
+               class="btn-gold inline-flex items-center justify-center gap-2 rounded-full bg-gold text-ink text-sm font-medium px-5 py-2.5 hover:bg-gold-soft">
+              Ver proyecto <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de Contactos -->
+  <section id="contacto" class="relative py-32 px-6 lg:px-10 border-t border-line/60">
+    <div class="mx-auto max-w-4xl text-center">
+      <p data-reveal class="reveal font-mono text-gold text-sm tracking-widest mb-4">// contacto</p>
+      <h2 data-reveal class="reveal font-display text-4xl sm:text-6xl text-paper mb-8">
+        ¿Tienes un proyecto en mente?
+      </h2>
+      <p data-reveal class="reveal text-mist text-lg max-w-xl mx-auto mb-10">
+        Escríbeme y conversemos sobre cómo puedo ayudarte a construirlo.
+      </p>
+
+      <a href="mailto:joseej1303@email.com" data-cursor data-reveal
+         class="reveal group inline-flex items-center gap-3 font-display text-2xl sm:text-3xl text-paper border-b border-line pb-3 hover:border-gold hover:text-gold transition-colors">
+        joseej1303@email.com
+        <i data-lucide="send" class="w-5 h-5 text-gold group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer-->
+<footer class="relative border-t border-line/60 px-6 lg:px-10 py-10">
+  <div class="mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-mist font-mono">
+    <!-- en esta parte el año se actualiza solo vía JS -->
+    <p>© <span id="current-year"></span> Edgar Flores. Todos los derechos reservados.</p>
+    <p class="flex items-center gap-1.5">
+      <i data-lucide="coffee" class="w-4 h-4 text-gold"></i>
+    </p>
+  </div>
+</footer>
+
+<!-- Conexión con el JavaScript -->
+<script src="script.js"></script>
+</body>
+</html>
