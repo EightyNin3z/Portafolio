@@ -1,145 +1,144 @@
-  html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; }
+/* Offset de scroll para que el header fijo no tape los títulos */
+section[id] { scroll-margin-top: 6rem; }
 
-  /* Offset de scroll para que el header fijo no tape los títulos */
-  section[id] { scroll-margin-top: 6rem; }
-
-  body {
+body {
     background-color: #0a0a0a;
     cursor: none; /* se restaura por JS si el dispositivo es táctil */
-  }
+}
 
-  ::selection { background: #cda039; color: #0a0a0a; }
+::selection { background: #cda039; color: #0a0a0a; }
 
-  /* Scrollbar discreta a juego con la paleta */
-  ::-webkit-scrollbar { width: 10px; }
-  ::-webkit-scrollbar-track { background: #0a0a0a; }
-  ::-webkit-scrollbar-thumb { background: #262626; border-radius: 999px; }
-  ::-webkit-scrollbar-thumb:hover { background: #cda039; }
+/* Scrollbar discreta a juego con la paleta */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb { background: #262626; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #cda039; }
 
-  /* Foco de teclado visible (accesibilidad) */
-  a:focus-visible, button:focus-visible {
+/* Foco de teclado visible (accesibilidad) */
+a:focus-visible, button:focus-visible {
     outline: 2px solid #cda039;
     outline-offset: 4px;
     border-radius: 4px;
-  }
+}
 
-  /* Cursor de la página personalizado.
-     - cursor-dot: punto preciso que sigue el mouse en 1:1
-     - cursor-ring: anillo con retardo y con efecto "elástico" (para que se viera bonito) */
-  #cursor-dot, #cursor-ring {
-    position: fixed;
-    top: 0; left: 0;
-    pointer-events: none;
-    border-radius: 50%;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    will-change: transform;
-  }
-  #cursor-dot {
-    width: 6px; height: 6px;
-    background: #cda039;
-    transition: opacity 0.2s ease, background-color 0.3s ease;
-  }
-  #cursor-ring {
-    width: 34px; height: 34px;
-    border: 1px solid rgba(205,160,57,0.6);
-    transition: width 0.25s ease, height 0.25s ease,
-                border-color 0.25s ease, background-color 0.25s ease,
-                opacity 0.2s ease;
-  }
-  #cursor-ring.is-hovering {
-    width: 64px; height: 64px;
-    background: rgba(205,160,57,0.12);
-    border-color: #e9c977;
-  }
-  #cursor-ring.is-pressing { width: 28px; height: 28px; }
-  body.cursor-hidden #cursor-dot,
-  body.cursor-hidden #cursor-ring { opacity: 0; }
+ /* Cursor de la página personalizado.
+    - cursor-dot: punto preciso que sigue el mouse en 1:1
+    - cursor-ring: anillo con retardo y con efecto "elástico" (para que se viera bonito) */
+#cursor-dot, #cursor-ring {
+   position: fixed;
+   top: 0; left: 0;
+   pointer-events: none;
+   border-radius: 50%;
+   z-index: 9999;
+   transform: translate(-50%, -50%);
+   will-change: transform;
+}
+#cursor-dot {
+  width: 6px; height: 6px;
+  background: #cda039;
+  transition: opacity 0.2s ease, background-color 0.3s ease;
+}
+#cursor-ring {
+  width: 34px; height: 34px;
+  border: 1px solid rgba(205,160,57,0.6);
+  transition: width 0.25s ease, height 0.25s ease,
+              border-color 0.25s ease, background-color 0.25s ease,
+              opacity 0.2s ease;
+}
+#cursor-ring.is-hovering {
+  width: 64px; height: 64px;
+  background: rgba(205,160,57,0.12);
+  border-color: #e9c977;
+}
+#cursor-ring.is-pressing { width: 28px; height: 28px; }
+body.cursor-hidden #cursor-dot,
+body.cursor-hidden #cursor-ring { opacity: 0; }
 
-  /* En táctiles, no ocultamos el cursor del sistema */
-  body.touch-device { cursor: auto; }
-  body.touch-device #cursor-dot,
-  body.touch-device #cursor-ring { display: none; }
+/* En táctiles, no ocultamos el cursor del sistema */
+body.touch-device { cursor: auto; }
+body.touch-device #cursor-dot,
+body.touch-device #cursor-ring { display: none; }
 
-  /* Animaciones de entrada (scroll-reveal + onload del hero) */
-  .reveal {
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.8s cubic-bezier(.22,1,.36,1),
-                transform 0.8s cubic-bezier(.22,1,.36,1);
-  }
-  .reveal.in-view { opacity: 1; transform: translateY(0); }
+/* Animaciones de entrada (scroll-reveal + onload del hero) */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(.22,1,.36,1),
+              transform 0.8s cubic-bezier(.22,1,.36,1);
+}
+.reveal.in-view { opacity: 1; transform: translateY(0); }
 
-  @media (prefers-reduced-motion: reduce) {
-    .reveal { opacity: 1; transform: none; transition: none; }
-    #bg-canvas { display: none; }
-  }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  #bg-canvas { display: none; }
+}
 
-  /* Linea dorada bajo los enlaces del header */
-  .nav-link { position: relative; }
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    left: 0; bottom: -6px;
-    width: 0%; height: 1px;
-    background: #cda039;
-    transition: width 0.3s ease;
-  }
-  .nav-link:hover::after,
-  .nav-link.active::after { width: 100%; }
-  .nav-link.active { color: #f3f1ec; }
+/* Linea dorada bajo los enlaces del header */
+.nav-link { position: relative; }
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -6px;
+  width: 0%; height: 1px;
+  background: #cda039;
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after,
+.nav-link.active::after { width: 100%; }
+.nav-link.active { color: #f3f1ec; }
 
-  /* Apartado de menú movil */
-  #mobile-menu {
-    position: fixed; inset: 0;
-    background: rgba(10,10,10,0.98);
-    backdrop-filter: blur(10px);
-    z-index: 40;
-    display: flex;
-    flex-direction: column;
-    transform: translateY(-100%);
-    transition: transform 0.5s cubic-bezier(.77,0,.18,1);
-  }
-  #mobile-menu.is-open { transform: translateY(0); }
-  #mobile-menu a {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-  }
-  #mobile-menu.is-open a { opacity: 1; transform: translateY(0); }
+/* Apartado de menú movil */
+#mobile-menu {
+  position: fixed; inset: 0;
+  background: rgba(10,10,10,0.98);
+  backdrop-filter: blur(10px);
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(-100%);
+  transition: transform 0.5s cubic-bezier(.77,0,.18,1);
+}
+#mobile-menu.is-open { transform: translateY(0); }
+#mobile-menu a {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+#mobile-menu.is-open a { opacity: 1; transform: translateY(0); }
+g
+/* Botón animado -> X */
+#menu-toggle .bar {
+  transition: transform 0.35s ease, opacity 0.35s ease;
+  transform-origin: center;
+}
+#menu-toggle.is-open .bar-top    { transform: translateY(6px) rotate(45deg); }
+#menu-toggle.is-open .bar-mid    { opacity: 0; }
+#menu-toggle.is-open .bar-bottom { transform: translateY(-6px) rotate(-45deg); }
 
-  /* Hamburguesa animada -> X */
-  #menu-toggle .bar {
-    transition: transform 0.35s ease, opacity 0.35s ease;
-    transform-origin: center;
-  }
-  #menu-toggle.is-open .bar-top    { transform: translateY(6px) rotate(45deg); }
-  #menu-toggle.is-open .bar-mid    { opacity: 0; }
-  #menu-toggle.is-open .bar-bottom { transform: translateY(-6px) rotate(-45deg); }
+/* Tarjetas de proyecto y botones*/
+.project-card { transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease; }
+.project-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(205,160,57,0.5);
+  box-shadow: 0 24px 48px -24px rgba(205,160,57,0.25);
+}
+.project-card .project-thumb { transition: transform 0.6s ease; }
+.project-card:hover .project-thumb { transform: scale(1.04); }
 
-  /* Tarjetas de proyecto y botones*/
-  .project-card { transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease; }
-  .project-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(205,160,57,0.5);
-    box-shadow: 0 24px 48px -24px rgba(205,160,57,0.25);
-  }
-  .project-card .project-thumb { transition: transform 0.6s ease; }
-  .project-card:hover .project-thumb { transform: scale(1.04); }
+.btn-gold {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+.btn-gold:hover { box-shadow: 0 12px 30px -10px rgba(205,160,57,0.55); transform: translateY(-2px); }
+.btn-gold:active { transform: translateY(0) scale(0.97); }
 
-  .btn-gold {
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-  }
-  .btn-gold:hover { box-shadow: 0 12px 30px -10px rgba(205,160,57,0.55); transform: translateY(-2px); }
-  .btn-gold:active { transform: translateY(0) scale(0.97); }
+.btn-ghost { transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease; }
 
-  .btn-ghost { transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease; }
+.icon-chip { transition: transform 0.3s ease, border-color 0.3s ease, color 0.3s ease; }
+.icon-chip:hover { transform: translateY(-3px); border-color: #cda039; color: #cda039; }
 
-  .icon-chip { transition: transform 0.3s ease, border-color 0.3s ease, color 0.3s ease; }
-  .icon-chip:hover { transform: translateY(-3px); border-color: #cda039; color: #cda039; }
+.tool-chip { transition: border-color 0.3s ease, color 0.3s ease, background-color 0.3s ease; }
+.tool-chip:hover { border-color: #cda039; color: #e9c977; background-color: rgba(205,160,57,0.06); }
 
-  .tool-chip { transition: border-color 0.3s ease, color 0.3s ease, background-color 0.3s ease; }
-  .tool-chip:hover { border-color: #cda039; color: #e9c977; background-color: rgba(205,160,57,0.06); }
-
-  /* Marco de fotografía con esquinas tipo "viewfinder" */
-  .frame-corner { position: absolute; width: 22px; height: 22px; border-color: #cda039; }
+/* Marco de fotografía con esquinas tipo "viewfinder" */
+.frame-corner { position: absolute; width: 22px; height: 22px; border-color: #cda039; }
