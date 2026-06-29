@@ -1,30 +1,25 @@
-# 🌌 Portafolio Profesional — Edgar Flores
+## Proyecto de portafolio (Profesional)
+Hola y Bienvenido a mi portafolio :)
 
-Hola y Bienvenido a mi portafolio web c: 
-• Este proyecto fue desarrollado en colaboración con herramientas de Inteligencia Artificial (AI-assisted development). 
-La IA se utilizó como apoyo para investigación, resolución de problemas y optimización del código, manteniendo el control del diseño, la arquitectura y la implementación durante todo el desarrollo.
+Este proyecto fue creado desde cero como una forma de pasar el tiempo y aprender a realizar páginas con distintos estilos y funcionalidades por mera curiosidad.
 
-## 🛠️ Tecnologías Utilizadas
+>Durante el desarrollo utilicé herramientas de Inteligencia Artificial como apoyo para investigar, resolver problemas y optimizar partes del código. La planificación, el diseño, las ideas y la implementación fueron realizadas por mí poco a poco. :3
 
-- **HTML5** & **CSS3** (Estructura semántica y modular del prtafolio).
-- **Tailwind CSS** (Estilizado mediante utilidades y diseño responsivo).
-- **JavaScript (ES6+)** (Interactividad nativa avanzada, con efectos de cursor personalizados y canvas animado).
-- **Lucide Icons** (Iconografía limpia y con un diseño vectorial).
+# En este Proyecto útilice:
 
-## 🚀 Características Clave
+• HTML5
+• CSS
+• Tailwind CSS 
+• JavaScript y
+• Lucide Icons (Recomendación de un amigo)
 
-- **Fondo Interactivo:** Se creo un canvas personalizado que simula constelaciones de circuitos respondiendo en tiempo real.
-- **Scroll Reveal Avanzado:** Transición y aparición asíncrona de secciones para mejorar la experiencia de usuario.
-- **Cursor Elástico:** Feedback visual dinámico al hacer hover o clic sobre elementos de carácteres interactivos.
-- **Totalmente Responsivo:** Fue diseñado y pensando para poder visualizarse en dispositivos móviles y de escritorio mediante breakpoints adaptativos.
+# Aqui están algunas aracterísticas que se me ocurrieron implementar en el proyecto:
 
-## 📁 Estructura del Repositorio
+• Un fondo interactivo con canvas animado.
+• Animaciones al hacer scroll.
+• Cursor personalizado con efectos dinámicos.
+• Y un diseño responsive para móviles y escritorio.
 
-Siguiendo las mejores prácticas de modularización en arquitectura web limpia:
-- `/img`: El el lugar de almacenamiento de assets gráficos, fotos y capturas de proyectos.
-- `/js`: Es la lógica y manipulación dinámica del DOM (`script.js`).
-- `/static/css`: Hojas de estilo complementarias para el index.
+Si te gusta el diseño, eres libre de tomar ideas o hacer un fork del repositorio y adaptarlo a tu manera :)
 
----
-Si te gusto el diseño sientete libre de copiar el repositorio y editarlo a tu gusto c:
-A medida avance en mis proyectos y estudios hacia el desarrollo FullStack, habrán actualizaciones continuas en este portafolio, gracias por leer <3 ⚡
+A medida avance en mis proyectos y estudios hacia el desarrollo FullStack, habrán actualizaciones continuas en este portafolio, gracias por leer <3
