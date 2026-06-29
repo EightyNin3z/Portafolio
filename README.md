@@ -10,10 +10,10 @@ Este proyecto fue creado desde cero como una forma de pasar el tiempo y aprender
 • HTML5
 • CSS
 • Tailwind CSS 
-• JavaScript y
-• Lucide Icons (Recomendación de un amigo)
+• JavaScript
+• y Lucide Icons (Recomendación de un amigo)
 
-# Aqui están algunas aracterísticas que se me ocurrieron implementar en el proyecto:
+# Aqui están algunas características que se me ocurrieron implementar en el proyecto:
 
 • Un fondo interactivo con canvas animado.
 • Animaciones al hacer scroll.
