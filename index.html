@@ -33,25 +33,26 @@
   };
 </script>
 
-<!--Tipografias (Google Fonts)-->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Tipografias (Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-<!-- Iconos (Sacados de Lucide) -->
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <!-- Iconos (Lucide) -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 
+  <!-- Estilos personalizados separados -->
+  <link rel="stylesheet" href="statics/css/styles.css"/>
 </head>
 
 <body class="bg-ink text-paper font-sans antialiased overflow-x-hidden">
 
-<!-- Bloqeu de Fondo Animado (formas geométricas sutiles) -->
-<canvas id="bg-canvas" class="fixed inset-0 -z-10 h-full w-full"></canvas>
+  <!-- Bloque de Fondo Animado -->
+  <canvas id="bg-canvas" class="fixed inset-0 -z-10 h-full w-full"></canvas>
 
-<!-- Cursor Personalizado -->
-<div id="cursor-dot" aria-hidden="true"></div>
-<div id="cursor-ring" aria-hidden="true"></div>
-
+  <!-- Cursor Personalizado -->
+  <div id="cursor-dot" aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
 <!-- Header -->
 <header id="site-header" class="fixed top-0 inset-x-0 z-50 transition-all duration-500 bg-ink/60 backdrop-blur-md border-b border-line/60">
   <div class="mx-auto max-w-7xl px-6 lg:px-10 h-20 flex items-center justify-between">
@@ -89,21 +90,20 @@
 
 <!-- Menú móvil de pantalla completa -->
 <div id="mobile-menu">
-  <nav class="flex-1 flex flex-col items-center justify-center gap-8 font-display text-4xl">
-    <a href="#inicio"       data-nav-mobile data-cursor class="text-paper hover:text-gold transition-colors">Sobre mí</a>
-    <a href="#experiencia"  data-nav-mobile data-cursor class="text-paper hover:text-gold transition-colors">Experiencia</a>
-    <a href="#herramientas" data-nav-mobile data-cursor class="text-paper hover:text-gold transition-colors">Herramientas</a>
-    <a href="#redes"        data-nav-mobile data-cursor class="text-paper hover:text-gold transition-colors">Redes sociales</a>
-    <a href="#proyectos"    data-nav-mobile data-cursor class="text-paper hover:text-gold transition-colors">Proyectos</a>
-    <a href="#contacto"     data-nav-mobile data-cursor class="text-gold">Contacto</a>
-  </nav>
-  <p class="pb-10 text-center font-mono text-xs text-mist uppercase tracking-widest">Disponible para nuevos proyectos</p>
-</div>
+    <nav class="flex-1 flex flex-col items-center justify-center gap-8 font-display text-4xl">
+      <a href="#inicio"       data-nav-mobile data-cursor class="text-paper hover:text-gold transition-colors">Sobre mí</a>
+      <a href="#experiencia"  data-nav-mobile data-cursor class="text-paper hover:text-gold transition-colors">Experiencia</a>
+      <a href="#herramientas" data-nav-mobile data-cursor class="text-paper hover:text-gold transition-colors">Herramientas</a>
+      <a href="#redes"        data-nav-mobile data-cursor class="text-paper hover:text-gold transition-colors">Redes sociales</a>
+      <a href="#proyectos"    data-nav-mobile data-cursor class="text-paper hover:text-gold transition-colors">Proyectos</a>
+      <a href="#contacto"     data-nav-mobile data-cursor class="text-gold">Contacto</a>
+    </nav>
+    <p class="pb-10 text-center font-mono text-xs text-mist uppercase tracking-widest">Disponible para nuevos proyectos</p>
+  </div>
 
 <!-- Main -->
-<main class="relative z-10">
-
-  <!-- Sección de Sobre Mi (HERO)-->
+  <main class="relative z-10">
+  <!-- Sección de Sobre Mi (Hero)-->
   <section id="inicio" class="relative min-h-screen flex items-center pt-32 pb-20 px-6 lg:px-10">
     <div class="mx-auto max-w-7xl w-full grid lg:grid-cols-[1.1fr_0.9fr] gap-16 items-center">
 
@@ -159,7 +159,7 @@
       <div data-reveal class="reveal order-1 lg:order-2 relative mx-auto w-full max-w-sm">
         <div class="relative aspect-[4/5] rounded-2xl overflow-hidden border border-line bg-panel">
           <div class="absolute inset-0 flex items-center justify-center text-mist">
-            <img src="assets/ImagenPerfil.jpeg" class="w-full h-full object-cover"></i>
+            <img src="img/ImagenPerfil.jpeg" class="w-full h-full object-cover"></i>
           </div>
           <div class="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent"></div>
         </div>
@@ -306,7 +306,7 @@
         <!-- Tarjetas de proyecto (Para Repetir) -->
         <article data-reveal class="reveal project-card rounded-2xl border border-line bg-panel overflow-hidden flex flex-col">
           <div class="project-thumb aspect-[16/10] bg-ink flex items-center justify-center text-mist border-b border-line">
-            <img src="assets/Proyecto1.png" class="w-full h-full object-cover"> 
+            <img src="img/Proyecto1.png" class="w-full h-full object-cover"> 
             <!--<i data-lucide="image" class="w-9 h-9 opacity-30"></i>-->
           </div>
           <div class="p-6 flex flex-col flex-1">
@@ -365,6 +365,6 @@
 </footer>
 
 <!-- Conexión con el JavaScript -->
-<script src="script.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>
